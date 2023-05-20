@@ -14,7 +14,7 @@ namespace ConsoleApp1
 
         static void Main(string[] args)
         {
-            string imagePath = "C:\\Users\\mfurqan\\Desktop\\Fetch Image\\1.jpg";
+            string imagePath = "C:\\Users\\mfurqan\\Desktop\\Fetch Image\\3.jpg";
             string tessdataPath = @"C:\Users\mfurqan\source\repos\OCR_ConsoleApp\packages\Tesseract.5.2.0\tessdata";
            
             // Specify the Tesseract engine options
@@ -37,9 +37,22 @@ namespace ConsoleApp1
                         // Retrieve the recognized text
                         string extractedText = page.GetText();
 
-                        // Print the extracted text
-                        Console.WriteLine(extractedText);
+                            // Print the extracted text
+                            string searchText = "Serial No.";
+                        //Console.WriteLine(extractedText);
+                            bool res = extractedText.Contains(searchText);
+                            if (res == true)
+                            {
+                                int startIndex = extractedText.IndexOf(searchText) + searchText.Length;
+                                string result = extractedText.Substring(startIndex,10);
+                                Console.WriteLine(result);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Serial No. not found");
+                            }
                     }
+
                 }
             }
 
