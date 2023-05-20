@@ -14,8 +14,20 @@ namespace ConsoleApp1
 
         static void Main(string[] args)
         {
-           string imagePath = "C:\\Users\\mfurqan\\Desktop\\Fetch Image\\1.jpg";
-            getSerial_no(imagePath);
+           //string imagePath1 = "C:\\Users\\mfurqan\\Desktop\\Fetch Image\\1.jpg";
+           // string imagePath2 = "C:\\Users\\mfurqan\\Desktop\\Fetch Image\\2.jpg";
+           // string imagePath3 = "C:\\Users\\mfurqan\\Desktop\\Fetch Image\\3.jpg";
+           // string imagePath4 = "C:\\Users\\mfurqan\\Desktop\\Fetch Image\\4.jpg";
+           // string imagePath5 = "C:\\Users\\mfurqan\\Desktop\\Fetch Image\\5.jpg";
+            for(int i = 1; i <= 5; i++)
+            {
+                string imagePath = "C:\\Users\\mfurqan\\Desktop\\Fetch Image\\"+i+".jpg";
+                Console.WriteLine(imagePath);
+
+                getSerial_no(imagePath);
+                
+            }
+            
         }
 
         static void getSerial_no(string imagepath)
@@ -44,7 +56,19 @@ namespace ConsoleApp1
                             string extractedText = page.GetText();
 
                             // Print the extracted text
-                            Console.WriteLine(extractedText);
+                            string searchText = "Serial No.";
+                            //Console.WriteLine(extractedText);
+                            bool res = extractedText.Contains(searchText);
+                            if (res == true)
+                            {
+                                int startIndex = extractedText.IndexOf(searchText) + searchText.Length;
+                                string result = extractedText.Substring(startIndex, 10);
+                                Console.WriteLine(result);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Serial No. not found");
+                            }
                         }
                     }
                 }
